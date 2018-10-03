@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Usuarios{% endblock title %}
+{% block content %}
+<div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <b>{{message}}</b>
+        </div>
+        {% endfor %}
+        {% endwith %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title clearfix">Usuarios - {{ qtd }}</h1>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Profissão</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if not usuarios %}
+                        <tr><td colspan="5" style="text-align: center">Nenhum usu&aacute;rio encontrado</td></tr>
+                        {% endif %}
+                        {% for u in usuarios %}
+                        <tr>
+                            <td>{{u._id}}</td>
+                            <td>{{u.nome}}</td>
+                            <td>{{u.email}}</td>
+                            <td>{{u.profissao}}</td>
+                            <td>
+                                <a href="/users/edit/{{u._id}}" class="glyphicon glyphicon-pencil"></a>
+                                <a href="/users/delete/{{u._id}}" class="glyphicon glyphicon-remove"></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

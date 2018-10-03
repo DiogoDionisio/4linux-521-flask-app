@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Alterar{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title clearfix">Alterar usuário</h1>
+                </div>
+                <div class="panel-body">
+                    <form method="post" action="/users/edit/{{usuario._id}}">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value="{{usuario.nome}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="email" value="{{usuario.email}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="profissao">Profissão</label>
+                            <input type="text" class="form-control" id="profissao" name="profissao" placeholder="Profissao" value="{{usuario.profissao}}">
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right">Alterar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}  
